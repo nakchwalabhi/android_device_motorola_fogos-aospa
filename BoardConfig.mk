@@ -6,6 +6,13 @@
 
 DEVICE_PATH := device/motorola/fogos
 
+# Tolerate duplicate install rules that arise from overlapping AOSPA and
+# CLO/QTI base trees (e.g. AOSPA's device/qcom/common mkdir modules vs
+# vendor/qcom/opensource/core-utils' AndroidBoardCommon.mk). Without this,
+# ckati aborts on "overriding commands for target". Temporary: remove once
+# each duplicate is resolved at its source.
+BUILD_BROKEN_DUP_RULES := true
+
 # Inherit from motorola sm6375-common
 include device/motorola/sm6375-common/BoardConfigCommon.mk
 
